@@ -22,8 +22,8 @@ public class UsersSchema {
     private long modifiedAt;
     @Field("isVerified")
     private boolean isVerified;
-    @Field("isActive")
-    private boolean isActive;
+    @Field("isAdmin")
+    private boolean isAdmin;
     @Field("isAuthor")
     private boolean isAuthor;
 
@@ -31,13 +31,14 @@ public class UsersSchema {
         this.userId = new ObjectId().toHexString();
     }
 
-    public UsersSchema(String username, String email, String password, boolean isAuthor) {
+    public UsersSchema(String username, String email, String password, boolean isAuthor, boolean isAdmin) {
         this.userId = new ObjectId().toHexString();
         this.username = username;
         this.email = email;
         this.password = password;
         this.createdAt = System.currentTimeMillis();
         this.isAuthor = isAuthor;
+        this.isAdmin = isAdmin;
     }
 
     public String getUserId() {
@@ -96,12 +97,12 @@ public class UsersSchema {
         isVerified = verified;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setActive(boolean Admin) {
+        isAdmin = Admin;
     }
 
     public boolean isAuthor() {
