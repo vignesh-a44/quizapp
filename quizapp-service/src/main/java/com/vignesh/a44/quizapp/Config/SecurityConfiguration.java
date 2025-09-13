@@ -2,6 +2,7 @@ package com.vignesh.a44.quizapp.Config;
 
 import com.vignesh.a44.quizapp.Filters.JWTFilter;
 import com.vignesh.a44.quizapp.Service.CustomUserDetailsService;
+import com.vignesh.a44.quizapp.Utility.CustomUtilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,15 @@ public class SecurityConfiguration {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
+    @Autowired
+    private CustomUtilities utilities;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
+        String[] nonRestrictedEndPoints = utilities.getNonRestrictedRoutes().toArray(new String[0]);
         security.csrf(AbstractHttpConfigurer::disable);
         security.authorizeHttpRequests(request ->
-                request.requestMatchers("/hello", "/login", "/resetPassword", "user/create", "/user/getUserDetails")
+                request.requestMatchers(nonRestrictedEndPoints)
                         .permitAll()
                         .anyRequest().authenticated()
         );

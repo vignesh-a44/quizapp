@@ -1,5 +1,6 @@
 package com.vignesh.a44.quizapp.Controllers;
 
+import com.vignesh.a44.quizapp.Schema.LoginRequestSchema;
 import com.vignesh.a44.quizapp.Schema.UsersSchema;
 import com.vignesh.a44.quizapp.Service.UsersService;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,15 +26,10 @@ public class Route {
         return new ResponseEntity<>("Hello World", HttpStatus.OK);
     }
 
-    @GetMapping("/checkLambda")
-    public String checkLambda() {
-        return "Service yet to be implemented!";
-    }
-
     @PostMapping("/login")
-    public ResponseEntity<?> userLogin(UsersSchema user) {
+    public ResponseEntity<?> userLogin(@RequestBody LoginRequestSchema request) {
         try {
-            return userService.verifyUser(user.getEmail(), user.getPassword());
+            return userService.verifyUser(request.getEmail(), request.getPassword());
         } catch (Exception e) {
             log.error("Error while logging in user: {}",e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

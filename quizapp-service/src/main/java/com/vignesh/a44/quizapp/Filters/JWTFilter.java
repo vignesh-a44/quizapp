@@ -54,7 +54,7 @@ public class JWTFilter extends OncePerRequestFilter {
             userId = jwt.extractUserEmail(token);
         }
 
-        if (userId != null && SecurityContextHolder.getContext().getAuthentication() != null) {
+        if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             log.info("UserId found!");
             UserDetails userDetails = context.getBean(CustomUserDetailsService.class).loadUserByUsername(userId);
             if (jwt.validateToken(token, userDetails)) {

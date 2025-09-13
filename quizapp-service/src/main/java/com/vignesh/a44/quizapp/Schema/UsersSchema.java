@@ -112,4 +112,19 @@ public class UsersSchema {
     public void setAuthor(boolean author) {
         isAuthor = author;
     }
+
+    @Override
+    public String toString() {
+        return "UsersSchema{" +
+                "userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                ", modifiedAt=" + modifiedAt +
+                ", isVerified=" + isVerified +
+                ", isAdmin=" + isAdmin +
+                ", isAuthor=" + isAuthor +
+                '}';
+    }
 }
