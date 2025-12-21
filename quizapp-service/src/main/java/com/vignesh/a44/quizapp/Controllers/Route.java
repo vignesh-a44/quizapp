@@ -1,7 +1,6 @@
 package com.vignesh.a44.quizapp.Controllers;
 
 import com.vignesh.a44.quizapp.Schema.LoginRequestSchema;
-import com.vignesh.a44.quizapp.Schema.UsersSchema;
 import com.vignesh.a44.quizapp.Service.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
