@@ -14,9 +14,6 @@ public class Route {
 
     private static final Logger log = LoggerFactory.getLogger(Route.class);
 
-    @Autowired
-    UsersService userService;
-
     @GetMapping("/hello")
     public ResponseEntity<?> entry() {
         log.info("Quiz service ping received!!!");
