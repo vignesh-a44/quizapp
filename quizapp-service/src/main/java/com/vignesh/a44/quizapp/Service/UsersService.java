@@ -33,7 +33,7 @@ public class UsersService {
         HashMap<String, Object> result = new HashMap<>();
         try {
             UsersSchema user = usersCollection.findByEmail(userEmail);
-            if (user != null) {
+            if (user != null && user.isVerified()) {
                 System.out.println("::[UsersController]>> Inside for custom /login: "+user.toString());
                 System.out.println("::[UsersController]>> Pre authenticationManager.authenticate ");
                 Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), userPassword));
@@ -47,7 +47,7 @@ public class UsersService {
                 }
             } else {
                 result.put("STATUS", "FAILED");
-                result.put("MESSAGE", "User not found!");
+                result.put("MESSAGE", "This user does not exist or is not verified");
                 return new ResponseEntity<>(result,HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception e) {

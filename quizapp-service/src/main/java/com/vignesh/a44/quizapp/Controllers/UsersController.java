@@ -1,8 +1,10 @@
 package com.vignesh.a44.quizapp.Controllers;
 
 import com.vignesh.a44.quizapp.Repository.UserRepo;
+import com.vignesh.a44.quizapp.Schema.LoginRequestSchema;
 import com.vignesh.a44.quizapp.Schema.UsersSchema;
 import com.vignesh.a44.quizapp.Service.JWTService;
+import com.vignesh.a44.quizapp.Service.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class UsersController {
     @Autowired
     UserRepo usersCollection;
 
+    @Autowired
+    UsersService userService;
+
     @PostMapping("/create")
     public ResponseEntity<?> createUserRequest (@RequestBody UsersSchema user) {
         try {
@@ -47,6 +52,16 @@ public class UsersController {
         } catch (Exception e) {
             log.error("Error while creating new user! - {}",e.getMessage());
             return new ResponseEntity<>("Could not create user: "+e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequestSchema loginRequest) {
+        try {
+            return userService.verifyUser(loginRequest.getEmail(), loginRequest.getPassword());
+        } catch (Exception e) {
+            log.error("Error while signing user in: {}", e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
