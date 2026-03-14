@@ -39,6 +39,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         String[] nonRestrictedEndPoints = utilities.getNonRestrictedRoutes().toArray(new String[0]);
+        security.cors(Customizer.withDefaults());
         security.csrf(AbstractHttpConfigurer::disable);
         security.authorizeHttpRequests(request ->
                 request.requestMatchers(nonRestrictedEndPoints)

@@ -26,6 +26,10 @@ public class UsersSchema {
     private boolean isAdmin;
     @Field("isAuthor")
     private boolean isAuthor;
+    @Field("verificationCode")
+    private String verificationCode;
+    @Field("verificationProcess")
+    private String verificationProcess;
 
     public UsersSchema() {
         this.userId = new ObjectId().toHexString();
@@ -111,6 +115,22 @@ public class UsersSchema {
 
     public void setAuthor(boolean author) {
         isAuthor = author;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public String getVerificationProcess() {
+        return verificationProcess;
+    }
+
+    public void setVerificationProcess(String verificationProcess) {
+        this.verificationProcess = verificationProcess;
     }
 
     @Override

@@ -19,18 +19,19 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepo repo;
 
+    /*The Actual parameter passed here is user email*/
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         try {
-            log.info("Requesting user details for user : {}", username);
-            UsersSchema user = repo.findByUsername(username);
+            log.info("Requesting user details for user : {}", userEmail);
+            UsersSchema user = repo.findByEmail(userEmail);
             if (user == null) {
-                log.debug("No user found for : {}", username);
-                throw new UsernameNotFoundException("No user found with provided username");
+                log.debug("No user found for : {}", userEmail);
+                throw new UsernameNotFoundException("No user found with provided userEmail");
             }
             return new UserPrincipal(user);
         } catch (Exception e) {
-            log.error("Error while loading user details with username: {}", e.getMessage());
+            log.error("Error while loading user details with userEmail: {}", e.getMessage());
             return null;
         }
     }

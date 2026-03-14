@@ -1,0 +1,53 @@
+.dashboard {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: white;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Profile */
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.profile-img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+/* Body */
+.dashboard-body {
+  padding: 40px;
+}
+
+.empty-message {
+  margin-top: 20px;
+  color: #666;
+}
+
+/* Assessments */
+.assessments-grid {
+  margin-top: 20px;
+  display: grid;
+  gap: 15px;
+}
+
+.assessment-card {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}

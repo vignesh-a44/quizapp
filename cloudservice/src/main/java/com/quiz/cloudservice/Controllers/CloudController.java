@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cloud")
-public class MainController {
+public class CloudController {
 
     @Autowired
     AwsS3Service s3Service;

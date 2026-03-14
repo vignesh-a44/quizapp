@@ -38,7 +38,7 @@ public class JWTFilter extends OncePerRequestFilter {
         String requestUri = request.getRequestURI();
 
         //Check and ignore if the request url is for login/signup
-        if (requestUri.equalsIgnoreCase("/hello") || requestUri.equalsIgnoreCase("/login") || requestUri.equalsIgnoreCase("/signup")) {
+        if (requestUri.equalsIgnoreCase("/hello") || requestUri.equalsIgnoreCase("/user/login") || requestUri.equalsIgnoreCase("/user/signup")) {
             log.info("Ignoring JWT Extraction process since the route is: {}", requestUri);
             filterChain.doFilter(request, response);
             return;

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const UsePost = (url) => {
     const postCall = async (params)=> {
         let result = {
@@ -6,11 +8,11 @@ const UsePost = (url) => {
         try {
             const param = {
                 method: 'POST',
-                headers: {
+                    headers: {
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify(params)
-            }
+                    }
             const response = await fetch(url, param);
             result.response = await response.json();
             result.status = 'SUCCESS';
